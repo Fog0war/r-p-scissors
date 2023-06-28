@@ -10,11 +10,54 @@
     <div>Let's play!</div>
     <script>
         function getComputerChoice (){
-            let choices = ["Rock", "Paper", "Scissors"];
+            let choices = ["rock", "paper", "scissors"];
             let selection = Math.floor (Math.random () * choices.length);
-            console.log (choices[selection]);
+            return (choices[selection]);
+        }; 
+        getComputerChoice();
+        let computerChoice = getComputerChoice();
+        function gameRound () {
+            let playerChoice = prompt ("Choice?", " ");
+
+            console.log (`You choose ${playerChoice.toLowerCase()}`);
+            console.log(`Computer chooses ${computerChoice}.`);
+
+            if (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'rock'
+            || playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'paper'
+            || playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'scissors') {
+                console.log ("It's a draw!");
+            } else if (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'paper') {
+                console.log ("You lose! Paper beats Rock!");
+            } else if (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'scissors') {
+                console.log ("You win! Rock beats Scissors!");
+            } else if (playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'rock') {
+                console.log ("You win! Paper beats Rock!");
+            } else if (playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'scissors') {
+                console.log ("You lose! Scissors beats Paper!");
+            } else if (playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'paper') {
+                console.log ("You win! Scissors beats Paper!");
+            } else if (playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'rock') {
+                console.log ("You lose! Rock beats Scissors!");
+            } else {
+                console.log ("Entry must be rock, paper or scissors!");
+            };
         };
-        getComputerChoice ();
+
+        gameRound();
+          /* switch (true) {
+            case (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'rock'):
+                console.log ("It's a draw!");
+                break;
+            case (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'paper'):
+                console.log ("You lose! Paper beats Rock!");
+                break;
+            case (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'scissors'):
+                console.log ("You win! Rock beats Scissors");
+                break;
+            default:
+                console.log ("Entry must be rock, paper or scissors!");
+           };    
+        }; */
     </script>
 </body>
 </html>
