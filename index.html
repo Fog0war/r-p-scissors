@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <style>
-        .headings {
+        body {
             display: flexbox;
+            margin: 0 150px;
+        }
+        .headings {
             text-align: center;
         }
     </style>
@@ -18,17 +21,20 @@
     <h3>Here are the rules:</h3>
     <ol>
         <li>Type in "rock", "paper" or "scissors" in the prompt window. Don't worry about letter casing!</li>
+        <li>The computer will make its own choice. See who won in the console window!</li>
         <li>That's it! Have fun!</li>
     </ol>
+    <button id="play">Play 5 rounds</button>
     <script>
         function getComputerChoice (){
             let choices = ["rock", "paper", "scissors"];
             let selection = Math.floor (Math.random () * choices.length);
             return (choices[selection]);
         }; 
-        getComputerChoice();
-        let computerChoice = getComputerChoice();
+
+
         function gameRound () {
+            let computerChoice = getComputerChoice();
             let playerChoice = prompt ("Choice?", " ");
 
             console.log (`You choose ${playerChoice.toLowerCase()}`);
@@ -38,38 +44,67 @@
             || playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'paper'
             || playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'scissors') {
                 console.log ("It's a draw!");
+                 outcome = "draw";
             } else if (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'paper') {
                 console.log ("You lose! Paper beats Rock!");
+                 outcome = "lose";
             } else if (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'scissors') {
                 console.log ("You win! Rock beats Scissors!");
+                 outcome = "win";
             } else if (playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'rock') {
                 console.log ("You win! Paper beats Rock!");
+                 outcome = "win";
             } else if (playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'scissors') {
                 console.log ("You lose! Scissors beats Paper!");
+                 outcome = "lose";
             } else if (playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'paper') {
                 console.log ("You win! Scissors beats Paper!");
+                 outcome = "win";
             } else if (playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'rock') {
                 console.log ("You lose! Rock beats Scissors!");
+                 outcome = "lose";
             } else {
                 console.log ("Entry must be rock, paper or scissors!");
+                 outcome = "lose";
             };
         };
 
-        gameRound();
-          /* switch (true) {
-            case (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'rock'):
-                console.log ("It's a draw!");
-                break;
-            case (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'paper'):
-                console.log ("You lose! Paper beats Rock!");
-                break;
-            case (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'scissors'):
-                console.log ("You win! Rock beats Scissors");
-                break;
-            default:
-                console.log ("Entry must be rock, paper or scissors!");
-           };    
-        }; */
+        document.getElementById("play").addEventListener("click", game)
+
+        let wins = 0
+        let losses = 0
+        let draws = 0
+        let outcome = "any";
+
+        function game() {
+            for (let i = 1; i <= 5; i++) {
+                gameRound();
+
+                switch (outcome) {
+                    case ("win"):
+                        wins = wins + 1;
+                        break;
+                    case ("lose"):
+                        losses = losses + 1;
+                        break;
+                default: 
+                        draws = draws + 1;
+                }
+            };
+            
+            console.log (`${wins} match(es) won , ${losses} match(es) lost, ${draws} match(es) drawn`)
+            
+            if (wins > losses){
+                console.log ("You won more matches! Congrats!");
+            };
+            if (losses > wins){
+                console.log ("You lost more matches! Better luck next time!");
+            };
+            if (draws > losses && draws > wins || losses === wins){
+                console.log ("Tie game!");
+            };
+        
+        };
     </script>
 </body>
 </html>
