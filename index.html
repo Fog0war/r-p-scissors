@@ -9,6 +9,7 @@
         body {
             display: flexbox;
             margin: 0 150px;
+            font-size: larger;
         }
         .headings {
             text-align: center;
@@ -16,8 +17,8 @@
         .roundChoiceGroup {
             display: flex;
             justify-content: space-evenly;
-            border: 1px solid blue;
-            padding: 20px;
+            border: 0px solid blue;
+            padding: 20px 180px;
             background-color: rgb(131, 196, 66);
         }
         .roundChoice {
@@ -62,9 +63,6 @@
             let wins = 0
             let losses = 0
             let draws = 0
-
-
-            
 
             const rockButt = document.querySelector("#rockButt");
             rockButt.addEventListener("click", () => {playerChoice = "rock"; gameRound();});
@@ -122,6 +120,7 @@
                     })
             };
                     break;
+
                 case ("lose"):
                     losses = losses + 1;
                     if (losses === 5){
@@ -131,6 +130,7 @@
                 })
             }; 
                     break;
+
                 case ("draw"): 
                     draws = draws + 1;
                     if (draws === 5) {
@@ -153,33 +153,6 @@
                     };
             };
         
-
-
-          /*  if (wins < 5 && losses < 5 && draws < 5) {
-                roundCounter(); 
-            } else {
-                roundCounter();
-
-            if (wins > losses){
-                document.getElementById("gameTotalResult").innerText = "You won more matches! Congrats!";
-                butts.forEach(function(e) {
-                    e.disabled = true;
-                }) 
-            };
-            if (losses > wins){
-                document.getElementById("gameTotalResult").innerText = "You lost more matches! Better luck next time!";
-                butts.forEach(function(e) {
-                    e.disabled = true;
-                }) 
-            };
-            if (losses === wins){
-                document.getElementById("gameTotalResult").innerText = "Tie game!";
-                butts.forEach(function(e) {
-                    e.disabled = true;
-                }) 
-            };
-        }; */
-
          let gameTally = document.querySelector("#gameTally");
             gameTally.textContent = `${wins} match(es) won , ${losses} match(es) lost, ${draws} match(es) drawn`
         };
