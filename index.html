@@ -35,13 +35,19 @@
         <li>The computer will make its own choice. See who won in the console window!</li>
         <li>That's it! Have fun!</li>
     </ol>
-    <button id="play">Play 5 rounds</button>
+    <button id="play">RESET</button>
     <div class="roundChoiceGroup">
         <button id="rockButt" class="roundChoice">Rock</button>
         <button id="paperButt" class="roundChoice">Paper</button>
         <button id="scissorButt" class="roundChoice">Scissors</button>
     </div>
-    <p><div id="gameScreen"></div></p>
+    <p><div id="gameScreen">
+        <div id="playerChoice"></div>
+        <div id="computerChoice"></div>
+        <div id="gameRoundResult"></div>
+        <div id="gameTally"></div>
+        <div id="gameTotalResult"></div>
+    </div></p>
     <script>
         function getComputerChoice (){
             let choices = ["rock", "paper", "scissors"];
@@ -49,79 +55,94 @@
             return (choices[selection]);
         }; 
 
+            
+            let playerChoice = " ";
+            let outcome = " ";
+            let wins = 0
+            let losses = 0
+            let draws = 0
+
+
+            
+
+            const rockButt = document.querySelector("#rockButt");
+            rockButt.addEventListener("click", () => {playerChoice = "rock"; gameRound();});
+            const paperButt = document.querySelector("#paperButt");
+            paperButt.addEventListener("click", () => {playerChoice = "paper"; gameRound();});
+            const scissorButt = document.querySelector("#scissorButt");
+            scissorButt.addEventListener("click", () => {playerChoice = "scissors"; gameRound();});
+
 
         function gameRound () {
+            
             let computerChoice = getComputerChoice();
-            let playerChoice = prompt ("Choice?", " ");
 
-            console.log (`You choose ${playerChoice.toLowerCase()}`);
-            console.log(`Computer chooses ${computerChoice}.`);
+            document.getElementById("playerChoice").innerText = `You choose ${playerChoice.toLowerCase()}`;
+            document.getElementById("computerChoice").innerText = `Computer chooses ${computerChoice}.`;
 
             if (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'rock'
             || playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'paper'
             || playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'scissors') {
-                console.log ("It's a draw!");
+                document.getElementById("gameRoundResult").innerText = "It's a draw!";
                  outcome = "draw";
             } else if (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'paper') {
-                console.log ("You lose! Paper beats Rock!");
+                document.getElementById("gameRoundResult").innerText = "You lose! Paper beats Rock!";
                  outcome = "lose";
             } else if (playerChoice.toLowerCase() === 'rock' && computerChoice.toLowerCase() === 'scissors') {
-                console.log ("You win! Rock beats Scissors!");
+                document.getElementById("gameRoundResult").innerText = "You win! Rock beats Scissors!";
                  outcome = "win";
             } else if (playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'rock') {
-                console.log ("You win! Paper beats Rock!");
+                document.getElementById("gameRoundResult").innerText = "You win! Paper beats Rock!";
                  outcome = "win";
             } else if (playerChoice.toLowerCase() === 'paper' && computerChoice.toLowerCase() === 'scissors') {
-                console.log ("You lose! Scissors beats Paper!");
+                document.getElementById("gameRoundResult").innerText = "You lose! Scissors beats Paper!";
                  outcome = "lose";
             } else if (playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'paper') {
-                console.log ("You win! Scissors beats Paper!");
+                document.getElementById("gameRoundResult").innerText = "You win! Scissors beats Paper!";
                  outcome = "win";
             } else if (playerChoice.toLowerCase() === 'scissors' && computerChoice.toLowerCase() === 'rock') {
-                console.log ("You lose! Rock beats Scissors!");
+                document.getElementById("gameRoundResult").innerText = "You lose! Rock beats Scissors!";
                  outcome = "lose";
             } else {
-                console.log ("Entry must be rock, paper or scissors!");
+                document.getElementById("gameRoundResult").innerText = "Entry must be rock, paper or scissors!";
                  outcome = "lose";
             };
-        };
 
-        document.getElementById("play").addEventListener("click", game)
 
-        let wins = 0
-        let losses = 0
-        let draws = 0
-        let outcome = "any";
+            if (wins < 5 && losses < 5 && draws < 5) {
 
-        function game() {
-            for (let i = 1; i <= 1; i++) {
-                gameRound();
-
-                switch (outcome) {
-                    case ("win"):
-                        wins = wins + 1;
-                        break;
-                    case ("lose"):
-                        losses = losses + 1;
-                        break;
-                default: 
-                        draws = draws + 1;
-                }
+            switch (outcome) {
+                case ("win"):
+                    wins = wins + 1;
+                    break;
+                case ("lose"):
+                    losses = losses + 1;
+                    break;
+                case ("draw"): 
+                    draws = draws + 1;
+                default:
             };
-            
-            console.log (`${wins} match(es) won , ${losses} match(es) lost, ${draws} match(es) drawn`)
-            
+
+            } else {
             if (wins > losses){
-                console.log ("You won more matches! Congrats!");
+                document.getElementById("gameTotalResult").innerText = "You won more matches! Congrats!";
             };
             if (losses > wins){
-                console.log ("You lost more matches! Better luck next time!");
+                document.getElementById("gameTotalResult").innerText = "You lost more matches! Better luck next time!";
             };
-            if (draws > losses && draws > wins || losses === wins){
-                console.log ("Tie game!");
+            if (losses === wins){
+                document.getElementById("gameTotalResult").innerText = "Tie game!";
             };
-        
+         };
+
+         let gameTally = document.querySelector("#gameTally");
+            gameTally.textContent = `${wins} match(es) won , ${losses} match(es) lost, ${draws} match(es) drawn`
         };
+        
+        const replay = document.querySelector("#play");
+        replay.onclick = () => {window.location.reload();};
+        
+        
     </script>
 </body>
 </html>
