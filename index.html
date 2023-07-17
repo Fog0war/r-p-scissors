@@ -13,6 +13,17 @@
         .headings {
             text-align: center;
         }
+        .roundChoiceGroup {
+            display: flex;
+            justify-content: space-evenly;
+            border: 1px solid blue;
+            padding: 20px;
+            background-color: rgb(131, 196, 66);
+        }
+        .roundChoice {
+            transform: scale(1.5);   
+        }
+        
     </style>
 </head>
 <body>
@@ -25,6 +36,12 @@
         <li>That's it! Have fun!</li>
     </ol>
     <button id="play">Play 5 rounds</button>
+    <div class="roundChoiceGroup">
+        <button id="rockButt" class="roundChoice">Rock</button>
+        <button id="paperButt" class="roundChoice">Paper</button>
+        <button id="scissorButt" class="roundChoice">Scissors</button>
+    </div>
+    <p><div id="gameScreen"></div></p>
     <script>
         function getComputerChoice (){
             let choices = ["rock", "paper", "scissors"];
@@ -77,7 +94,7 @@
         let outcome = "any";
 
         function game() {
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 1; i++) {
                 gameRound();
 
                 switch (outcome) {
