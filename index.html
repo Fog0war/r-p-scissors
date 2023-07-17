@@ -23,16 +23,17 @@
         .roundChoice {
             transform: scale(1.5);   
         }
-        
+
     </style>
 </head>
 <body>
     <h1 class="headings">**Let's play Rock Paper Scissors**</h1>
-    <h2 class="headings">Open up the console window to view the game!</h2>
     <h3>Here are the rules:</h3>
     <ol>
-        <li>Type in "rock", "paper" or "scissors" in the prompt window. Don't worry about letter casing!</li>
-        <li>The computer will make its own choice. See who won in the console window!</li>
+        <li>Select the "rock", "paper" or "scissors" button to play a round.</li>
+        <li>The computer will make its own choice.</li>
+        <li>After 5 wins, draws or losses have been achieved, the game ends and a winner is declared.</li>
+        <li>Click the "reset" button to start another game.</li>
         <li>That's it! Have fun!</li>
     </ol>
     <button id="play">RESET</button>
@@ -110,23 +111,51 @@
             };
 
 
-            function roundCounter() {
 
             switch (outcome) {
                 case ("win"):
                     wins = wins + 1;
+                    if (wins === 5){
+                document.getElementById("gameTotalResult").innerText = "You won more matches! Congrats!";
+                butts.forEach(function(e) {
+                    e.disabled = true;
+                    })
+            };
                     break;
                 case ("lose"):
                     losses = losses + 1;
+                    if (losses === 5){
+                document.getElementById("gameTotalResult").innerText = "You lost more matches! Better luck next time!";
+                butts.forEach(function(e) {
+                    e.disabled = true;
+                })
+            }; 
                     break;
                 case ("draw"): 
                     draws = draws + 1;
-                default:
+                    if (draws === 5) {
+                        if (losses > wins) {
+                            document.getElementById("gameTotalResult").innerText = "You lost more matches! Better luck next time!";
+                butts.forEach(function(e) {
+                    e.disabled = true;
+                })
+                        } else if (wins > losses) {
+                            document.getElementById("gameTotalResult").innerText = "You won more matches! Congrats!";
+                butts.forEach(function(e) {
+                    e.disabled = true;
+                    })
+                        } else {
+                            document.getElementById("gameTotalResult").innerText = "Tie game!";
+                butts.forEach(function(e) {
+                    e.disabled = true;
+                }) 
+                        };
+                    };
             };
-        };
+        
 
 
-            if (wins < 5 && losses < 5 && draws < 5) {
+          /*  if (wins < 5 && losses < 5 && draws < 5) {
                 roundCounter(); 
             } else {
                 roundCounter();
@@ -149,7 +178,7 @@
                     e.disabled = true;
                 }) 
             };
-        }; 
+        }; */
 
          let gameTally = document.querySelector("#gameTally");
             gameTally.textContent = `${wins} match(es) won , ${losses} match(es) lost, ${draws} match(es) drawn`
@@ -158,7 +187,6 @@
          
         const replay = document.querySelector("#play");
         replay.onclick = () => {window.location.reload();};
-        
         
     </script>
 </body>
