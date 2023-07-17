@@ -71,6 +71,7 @@
             paperButt.addEventListener("click", () => {playerChoice = "paper"; gameRound();});
             const scissorButt = document.querySelector("#scissorButt");
             scissorButt.addEventListener("click", () => {playerChoice = "scissors"; gameRound();});
+            const butts = Array.from(document.querySelectorAll(".roundChoice"));
 
 
         function gameRound () {
@@ -109,7 +110,7 @@
             };
 
 
-            if (wins < 5 && losses < 5 && draws < 5) {
+            function roundCounter() {
 
             switch (outcome) {
                 case ("win"):
@@ -122,23 +123,39 @@
                     draws = draws + 1;
                 default:
             };
+        };
 
+
+            if (wins < 5 && losses < 5 && draws < 5) {
+                roundCounter(); 
             } else {
+                roundCounter();
+
             if (wins > losses){
                 document.getElementById("gameTotalResult").innerText = "You won more matches! Congrats!";
+                butts.forEach(function(e) {
+                    e.disabled = true;
+                }) 
             };
             if (losses > wins){
                 document.getElementById("gameTotalResult").innerText = "You lost more matches! Better luck next time!";
+                butts.forEach(function(e) {
+                    e.disabled = true;
+                }) 
             };
             if (losses === wins){
                 document.getElementById("gameTotalResult").innerText = "Tie game!";
+                butts.forEach(function(e) {
+                    e.disabled = true;
+                }) 
             };
-         };
+        }; 
 
          let gameTally = document.querySelector("#gameTally");
             gameTally.textContent = `${wins} match(es) won , ${losses} match(es) lost, ${draws} match(es) drawn`
         };
         
+         
         const replay = document.querySelector("#play");
         replay.onclick = () => {window.location.reload();};
         
