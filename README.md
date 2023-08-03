@@ -1,1 +1,1 @@
-Rock Paper Scissors console window game project.
+Rock Paper Scissors game project by Jerry Ataja.
