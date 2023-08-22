@@ -8,27 +8,93 @@
     <style>
         body {
             display: flexbox;
-            margin: 0 150px;
+            margin: 20px 150px;
             font-size: larger;
+            font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+        #gameWindow {
+            background-color: #444fec;
+            padding: 20px 40px;
+            color: #fff;
+
         }
         .headings {
             text-align: center;
+            border: 1px solid #fff;
+            padding: 20px;
+            margin: 16px 120px;
+            background-color: #fff;
+            color: #444fec;
+        }
+
+        li {
+            line-height: 2.25;
+        }
+
+        #gameScreen {
+            line-height: 1.50;
         }
         .roundChoiceGroup {
             display: flex;
             justify-content: space-evenly;
             border: 0px solid blue;
             padding: 20px 180px;
-            background-color: rgb(131, 196, 66);
+            background-color: #bbece3;
+            border-radius: .25rem;
         }
         .roundChoice {
-            transform: scale(1.5);   
+            transform: scale(1.15)   
+        }
+
+        .roundChoice, #play {
+        align-items: center;
+        background-clip: padding-box;
+        background-color: #fa6400;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+        box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        line-height: 1.25;
+        margin: 0;
+        min-height: 3rem;
+        padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+        position: relative;
+        text-decoration: none;
+        transition: all 250ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        width: auto;
+        }
+
+        .roundChoice:hover,
+        .roundChoice:focus {
+        background-color: #fb8332;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+        }
+
+        .roundChoice:hover {
+        transform: translateY(-1px);
+        }
+
+        .roundChoice:active {
+        background-color: #c85000;
+        box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+        transform: translateY(0);
         }
 
     </style>
 </head>
 <body>
-    <h1 class="headings">**Let's play Rock Paper Scissors**</h1>
+    <div id="gameWindow">
+    <h1 class="headings">Let's play Rock Paper Scissors!</h1>
     <h3>Here are the rules:</h3>
     <ol>
         <li>Select the "rock", "paper" or "scissors" button to play a round.</li>
@@ -162,5 +228,6 @@
         replay.onclick = () => {window.location.reload();};
         
     </script>
+    </div>
 </body>
 </html>
